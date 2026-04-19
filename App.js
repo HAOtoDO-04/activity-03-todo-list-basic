@@ -10,41 +10,15 @@ export default function App() {
   // ===========================================
   // TODO #1: Initialize todos array state
   // ===========================================
-  // INSTRUCTIONS:
-  // 1. Use useState to create a 'todos' state variable
-  // 2. Initialize it with an empty array: []
-  // 3. Each todo will be an object with: { id: string, text: string, completed: boolean }
-  //
-  // HINT: const [todos, setTodos] = useState([]);
-  // ===========================================
-
-  // YOUR CODE HERE - Initialize todos state
   const [todos, setTodos] = useState([]);
 
   // Also need state for the input text field
   const [inputText, setInputText] = useState('');
 
-
   // ===========================================
   // TODO #2: Implement addTodo function
   // ===========================================
-  // INSTRUCTIONS:
-  // 1. Check if inputText is not empty (use .trim() to remove spaces)
-  // 2. If empty, return early (don't add empty todos)
-  // 3. Create a new todo object with:
-  //    - id: generateId() (helper function provided)
-  //    - text: inputText.trim()
-  //    - completed: false
-  // 4. Add the new todo to the todos array (immutably!)
-  // 5. Clear the input field by calling setInputText('')
-  //
-  // REMEMBER: Never mutate state directly!
-  // ❌ WRONG: todos.push(newTodo); setTodos(todos);
-  // ✅ CORRECT: setTodos([...todos, newTodo]);
-  // ===========================================
-
   const addTodo = () => {
-    // YOUR CODE HERE - Implement add todo logic
     // Step 1: Validate input
     if (!inputText.trim()) {
       return; // Don't add empty todos
@@ -62,43 +36,23 @@ export default function App() {
 
     // Step 4: Clear input
     setInputText('');
-
-
-
   };
-
 
   // ===========================================
   // TODO #3: Implement deleteTodo function
   // ===========================================
-  // INSTRUCTIONS:
-  // 1. This function receives a todo ID as a parameter
-  // 2. Use array.filter() to create a NEW array without the deleted todo
-  // 3. The filter condition should EXCLUDE the todo with matching id
-  // 4. Update state with the filtered array
-  //
-  // HINT: todos.filter(todo => todo.id !== id)
-  // This keeps all todos EXCEPT the one with matching id
-  // ===========================================
-
   const deleteTodo = (id) => {
-    // YOUR CODE HERE - Implement delete logic
     const updatedTodos = todos.filter(todo => todo.id !== id);
     setTodos(updatedTodos);
   };
 
-
   // ✅ BONUS: Toggle complete function (Already provided!)
-  // This shows the pattern for updating an item in an array
   const toggleComplete = (id) => {
     const updatedTodos = todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
     setTodos(updatedTodos);
-    // Can also be written as:
-    //setTodos(todos.map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo));
   };
-
 
   // ===========================================
   // RENDER UI (All pre-built!)
